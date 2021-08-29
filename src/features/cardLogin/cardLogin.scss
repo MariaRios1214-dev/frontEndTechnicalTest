@@ -1,0 +1,32 @@
+.cardLogin {
+  padding: 30px 0px;
+  width: 400px;
+  border: 1px solid black;
+  border-radius: 8px;
+  box-shadow: 10px 5px 5px black;
+  input {
+    height: 32px;
+    font-size: 16px;
+    border-radius: 4px;
+    width: 300px;
+  }
+  .iconEnterprise {
+    img {
+      width: 100px;
+      height: auto;
+      object-fit: contain;
+    }
+  }
+  .button-sign {
+    display: block;
+    margin: 10px 0px;
+    button {
+      border-radius: 4px;
+      padding: 12px 24px;
+      font-size: 20px;
+      background-color: #7cbae6;
+      color: rgb(93, 47, 199);
+      cursor: pointer;
+    }
+  }
+}
