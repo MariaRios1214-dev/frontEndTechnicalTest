@@ -11,9 +11,16 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.positionsCards {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 30px auto;
+}
 
 #propsCard {
-  padding: 30px 0px;
+  text-align: center;
+  padding: 30px 30px;
   width: 400px;
   border: 1px solid black;
   border-radius: 8px;

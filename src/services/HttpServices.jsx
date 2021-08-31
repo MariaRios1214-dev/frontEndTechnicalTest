@@ -5,12 +5,12 @@ const commonHeaders ={
     'X-Content-Type-Options': "nosniff",
     'Authorization': JSON.parse(sessionStorage.getItem('user'))
     ? JSON.parse(sessionStorage.getItem('user')).token
-    : ''
+    : '',
 }
 
 const BASE_QUERY_URL = 'https://api.github.com';
 
-const HttpService = () => {
+const HttpServices = () => {
 return{
     get: (route) => {
         return fetch(BASE_QUERY_URL + route, {
@@ -35,4 +35,4 @@ return{
     })
 }}
 };
-export default HttpService;
+export default HttpServices;

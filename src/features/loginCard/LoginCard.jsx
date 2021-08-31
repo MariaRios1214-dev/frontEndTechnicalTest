@@ -2,7 +2,6 @@ import React from "react";
 import './loginCard.scss';
 
 const LoginCard = ({
-    id,
     handleSubmit,
     handleChange,
     logo,
@@ -17,19 +16,21 @@ const LoginCard = ({
                 <form action="submit">
                     <h3>Username or email address</h3>
                     <input
-                        name={`username${id}`}
+                        name='username'
                         type="text"
                         required
                         onChange={handleChange} />
                     <h3>Password</h3>
                     <input
-                        name={`password${id}`}
+                        name='password'
                         type="password"
-                        required onChange={handleChange} />
+                         onChange={handleChange} />
                     <div className="button-sign">
                     <button
-                    name={`buttonUser${id}`}
-                     onClick={() =>handleSubmit(initialValues)}><strong>Sign in</strong></button>
+                    type='primary'
+                    name='buttonLogin'
+                    disabled={initialValues?.username === ''}
+                     onClick={handleSubmit}><strong>Sign in</strong></button>
                     </div>
                 </form>
             </div>

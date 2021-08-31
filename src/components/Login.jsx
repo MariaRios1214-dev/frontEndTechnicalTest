@@ -4,15 +4,15 @@ import Octocat from '../assets/img/Octocat.png';
 import LoginCard from '../features/loginCard/LoginCard';
 
 const Login = ({handleSubmit}) => {
-    const [initialValues, setInitialValues] = useState({
-        userA:{
-            usernameA   : '',
-            passwordA: '',
-        }, 
-        userB:{
-        usernameB   : '',
-        passwordB: ''}
-    });
+    const [initialValues, setInitialValues] = useState({username: '',
+    password: ''
+        // users:[
+        //     {
+        //         username: '',
+        //         password: ''
+        //     }
+        // ]
+            });
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -25,27 +25,28 @@ console.log('sssssssss', initialValues)
     
 
     return (
-     <div className="login">
+     <div className="positionsCards">
             <LoginCard
-            key='A'
-            id='A'
+            key='1'
             handleChange={handleChange}
             handleSubmit={() =>handleSubmit(initialValues)}
             logo={Octocat}
+            initialValues={initialValues}
         />
-           <LoginCard
-            key='B'
-            id='B'
+<strong>VS</strong>        
+   <LoginCard
+            key='2'
             handleChange={handleChange}
             handleSubmit={() =>handleSubmit(initialValues)}
             logo={Octocat}
+            initialValues={initialValues}
         />
      </div>
     )
 }
 
 const mapDispatchToProps = dispatch => ({
-        handleSubmit(values){debugger
+        handleSubmit(values){
         dispatch({
             type:'LOGIN',
             payload:values

@@ -23,5 +23,8 @@
       color: rgb(93, 47, 199);
       cursor: pointer;
     }
+    button:disabled {
+      cursor: not-allowed;
+    }
   }
 }
