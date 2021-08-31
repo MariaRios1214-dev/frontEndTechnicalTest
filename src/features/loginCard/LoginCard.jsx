@@ -1,13 +1,15 @@
 import React from "react";
-import './cardLogin.scss';
+import './loginCard.scss';
 
-const CardLogin = ({
+const LoginCard = ({
+    id,
     handleSubmit,
     handleChange,
-    logo
+    logo,
+    initialValues
 }) => {
     return (
-        <div className="cardLogin" >
+        <div className="loginCard" id="propsCard">
             <div className="iconEnterprise">
                 <img src={logo} alt="img-logo" />
             </div>
@@ -15,16 +17,19 @@ const CardLogin = ({
                 <form action="submit">
                     <h3>Username or email address</h3>
                     <input
-                        name='username'
+                        name={`username${id}`}
                         type="text"
                         required
                         onChange={handleChange} />
                     <h3>Password</h3>
-                    <input name='password'
+                    <input
+                        name={`password${id}`}
                         type="password"
                         required onChange={handleChange} />
                     <div className="button-sign">
-                    <button onClick={handleSubmit}><strong>Sign in</strong></button>
+                    <button
+                    name={`buttonUser${id}`}
+                     onClick={() =>handleSubmit(initialValues)}><strong>Sign in</strong></button>
                     </div>
                 </form>
             </div>
@@ -32,4 +37,4 @@ const CardLogin = ({
     )
 }
 
-export default CardLogin;
+export default LoginCard;

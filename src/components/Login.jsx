@@ -1,12 +1,17 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import Octocat from '../assets/img/Octocat.png';
-import CardLogin from '../features/cardLogin/CardLogin';
+import LoginCard from '../features/loginCard/LoginCard';
 
-const Login = () => {
+const Login = ({handleSubmit}) => {
     const [initialValues, setInitialValues] = useState({
-        username: '',
-        password: ''
+        userA:{
+            usernameA   : '',
+            passwordA: '',
+        }, 
+        userB:{
+        usernameB   : '',
+        passwordB: ''}
     });
 
     const handleChange = (e) => {
@@ -17,31 +22,34 @@ const Login = () => {
         });
     }
 console.log('sssssssss', initialValues)
-    const handleSubmit = (e) => {
-
-    };
+    
 
     return (
      <div className="login">
-            <CardLogin
+            <LoginCard
+            key='A'
+            id='A'
             handleChange={handleChange}
-            handleSubmit={handleSubmit}
+            handleSubmit={() =>handleSubmit(initialValues)}
             logo={Octocat}
         />
-           <CardLogin
+           <LoginCard
+            key='B'
+            id='B'
             handleChange={handleChange}
-            handleSubmit={handleSubmit}
+            handleSubmit={() =>handleSubmit(initialValues)}
             logo={Octocat}
         />
      </div>
     )
 }
 
-const mapStateToProps = (state) => {
-
-}
-const mapDispatchToProps = () => {
-
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
+const mapDispatchToProps = dispatch => ({
+        handleSubmit(values){debugger
+        dispatch({
+            type:'LOGIN',
+            payload:values
+        })
+    }
+});
+export default connect(null, mapDispatchToProps)(Login);

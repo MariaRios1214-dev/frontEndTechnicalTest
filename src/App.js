@@ -2,7 +2,8 @@ import React from 'react';
 
 import './App.css';
 import Login from './components/Login';
-import {Switch,Route} from 'react-router-dom';
+import Features from './components/Features';
+import {Switch,Route, } from 'react-router-dom';
 
 
 function App() {
@@ -12,8 +13,8 @@ function App() {
           <section ><h1>Consulta de cuentas </h1> </section>
         </nav> <main>
           <Switch >
-            <Route path='/'><Login /> </Route>
-            <Route path='/detailAccount' render={() => { }} > </Route>
+            <Route path="/detailAccount" component={Features}/>
+            <Route path="/" component={Login}/>
           </Switch>
         </main>
       </div>

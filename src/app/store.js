@@ -1,7 +1,21 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { createStore } from "redux";
 
-export const store = configureStore({
-  reducer: {
-    // counter: counterReducer,
-  },
-});
+const initialState ={
+  username: '',
+  password: ''
+}
+
+const reducerFeatures =(state=initialState, action)=>{
+  console.log('spruebaActio', action, state)
+  switch(action.type){
+    case 'LOGIN':
+      return{
+        username:action.payload.username,
+        password:action.payload.password
+      }
+      default:
+      return state
+  }
+};
+
+export default createStore(reducerFeatures);

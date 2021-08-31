@@ -1,4 +1,5 @@
 @import './assets/components/login.scss';
+@import './assets/components/features.scss';
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
@@ -9,4 +10,12 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+#propsCard {
+  padding: 30px 0px;
+  width: 400px;
+  border: 1px solid black;
+  border-radius: 8px;
+  box-shadow: 10px 5px 5px black;
 }
