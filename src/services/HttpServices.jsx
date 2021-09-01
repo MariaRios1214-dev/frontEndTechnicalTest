@@ -1,4 +1,4 @@
-import Message from '../libs/message/message';
+import AlertMessage from '../libs/alertMessage/alertMessage';
 
 const BASE_QUERY_URL = 'https://api.github.com';
 
@@ -13,12 +13,12 @@ const HttpServices = () => {
             const responseJSON = response.json();
             return responseJSON;
           } else {
-            Message('danger', 'Algo ha salido mal, por favor de nuevo.');
+            AlertMessage('danger', 'Algo ha salido mal, por favor de nuevo.');
           }
         })
         .catch(error => {
           console.log(error);
-          Message('danger', 'Algo ha salido mal, por favor de nuevo.');
+          AlertMessage('danger', 'Algo ha salido mal, por favor de nuevo.');
         });
     },
     command: (command, payload, route) => {
@@ -36,12 +36,12 @@ const HttpServices = () => {
             const responseJSON = response.json();
             return responseJSON;
           } else {
-            Message('danger', 'Algo ha salido mal, por favor de nuevo.');
+            AlertMessage('danger', 'Algo ha salido mal, por favor de nuevo.');
           }
         })
         .catch(error => {
           console.log(error);
-          Message('danger', 'Algo ha salido mal, por favor de nuevo.');
+          AlertMessage('danger', 'Algo ha salido mal, por favor de nuevo.');
         });
     },
   };

@@ -1,23 +1,70 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import Octocat from '../assets/img/Octocat.png';
 import FeaturesCard from '../libs/featuresCard/featuresCard';
-import HttpServices from '../services/HttpServices';
-
+import listSearch from './listSearch.json';
+let listFilters = [];
+function eliminarObjetosDuplicados(arr, prop) {
+  var nuevoArray = [];
+  var lookup = {};
+  for (var i in arr) {
+    lookup[arr[i][prop]] = arr[i];
+  }
+  for (i in lookup) {
+    nuevoArray.push(lookup[i]);
+  }
+  return nuevoArray;
+}
 const VSUsersFeatures = ({ userContext }) => {
-  console.log('userContext', userContext);
-  const filterValues = values => {
-    console.log('valuesChange', values.target.value);
-    const value = values.target.value;
-    const searchAnyType = value
-      .normalize('NFD')
-      .replace(/([aeio])\u0301|(u)[\u0301\u0308]/gi, '$1$2')
-      .normalize()
-      .toUpperCase();
-    console.log('searchAnyType', searchAnyType);
-    console.log('prueba search', searchAnyType);
-  };
+  const [valuesSearchFilter, setValuesSearchFilter] = useState([]);
+  const [textValue, setTextValue] = useState('');
 
+  const filterValues = values => {
+    const value = values.target.value;
+    setTextValue(value);
+
+    if (value === '') {
+      listFilters = [];
+    } else {
+      const searchAnyType = value
+        .normalize('NFD')
+        .replace(/([aeio])\u0301|(u)[\u0301\u0308]/gi, '$1$2')
+        .normalize()
+        .toUpperCase();
+      const valuesFiltered = listSearch.filter(search =>
+        search.name.includes(searchAnyType)
+      );
+      var duplicadosEliminados = eliminarObjetosDuplicados(
+        valuesFiltered,
+        'titleCard'
+      );
+      if (duplicadosEliminados && duplicadosEliminados?.length >= 1) {
+        userContext?.map(userCont =>
+          duplicadosEliminados.filter(filter =>
+            filter.valueSearch === 'totalReposByUser'
+              ? listFilters.push({
+                  title: filter.titleCard,
+                  key: userCont.key,
+                  fieldFilter: userCont[filter.valueSearch],
+                  search: filter.valueSearch,
+                })
+              : listFilters.push({
+                  title: filter.titleCard,
+                  key: userCont.key,
+                  fieldFilter: userCont[filter.valueSearch],
+                  search: filter.valueSearch?.name,
+                  searchLanguages: filter.valueSearch?.languages,
+                })
+          )
+        );
+      } else {
+        listFilters = [];
+      }
+    }
+    var valueSearch = eliminarObjetosDuplicados(listFilters, 'key');
+    setValuesSearchFilter(valueSearch);
+  };
+  console.log('valuesSearchFilter', valuesSearchFilter);
   return (
     <div className="searchFeatures">
       <div className="positionsCards">
@@ -29,13 +76,30 @@ const VSUsersFeatures = ({ userContext }) => {
       <div className="positionsCards"></div>
       <div className="align-component">
         <input
-          type="search"
+          type="text"
           className="search-input"
           onChange={filterValues}
           name="textFilter"
-
-          // value="hola"
+          value={textValue}
         />
+        <div className="positionsCards">
+          {valuesSearchFilter &&
+            valuesSearchFilter.length >= 1 &&
+            valuesSearchFilter.map(values => (
+              <div id="propsCard" key={values.key}>
+                <h2>{values.tile}</h2>
+                <div>{values.fieldFilter}</div>
+                {values?.searchLanguages &&
+                values?.searchLanguages.length >= 1 ? (
+                  values.searchLanguages.map((valuesLenguages, id) => (
+                    <div>{valuesLenguages}</div>
+                  ))
+                ) : (
+                  <div>{values?.searchLanguages}</div>
+                )}
+              </div>
+            ))}
+        </div>
       </div>
     </div>
   );
