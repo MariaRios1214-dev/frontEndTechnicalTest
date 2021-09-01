@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Octocat from '../assets/img/Octocat.png';
-import FeaturesCard from '../features/featuresCard/FeaturesCard';
+import FeaturesCard from '../libs/featuresCard/featuresCard';
 import HttpServices from '../services/HttpServices';
 
-const VSUsersFeatures = ({ userContext, getAllRepos }) => {
+const VSUsersFeatures = ({ userContext }) => {
+  console.log('userContext', userContext);
   const filterValues = values => {
     console.log('valuesChange', values.target.value);
     const value = values.target.value;
@@ -14,6 +15,7 @@ const VSUsersFeatures = ({ userContext, getAllRepos }) => {
       .normalize()
       .toUpperCase();
     console.log('searchAnyType', searchAnyType);
+    console.log('prueba search', searchAnyType);
   };
 
   return (
@@ -27,29 +29,18 @@ const VSUsersFeatures = ({ userContext, getAllRepos }) => {
       <div className="positionsCards"></div>
       <div className="align-component">
         <input
-          type="text"
+          type="search"
           className="search-input"
           onChange={filterValues}
           name="textFilter"
+
+          // value="hola"
         />
       </div>
     </div>
   );
 };
 
-const mapDispatchToProps = dispatch => ({
-  // getAllRepos(){
-  //   HttpServices()
-  //           .get(`/users/${values.username}/repos`)
-  //           .then(response => {
-  //             if (response) {
-  //               dispatch({
-  //                 type: 'GET_ALL_INFORMATION',
-  //                 payload: values,
-  //               });
-  //             }
-  //           });
-  // }
-});
+const mapDispatchToProps = dispatch => ({});
 const mapStateToProps = state => ({ userContext: state });
 export default connect(mapStateToProps, mapDispatchToProps)(VSUsersFeatures);

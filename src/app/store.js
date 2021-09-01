@@ -14,13 +14,14 @@ const reducerFeatures = (state = initialState, action) => {
               id: payload.id,
               name: payload.name,
               login: payload.login,
-              avatar_url: payload.html_url,
+              avatar_url: payload.avatar_url,
               html_url: payload.html_url,
               location: payload.location,
               public_repos: payload.public_repos,
               public_gists: payload.public_gists,
               followers: payload.followers,
               following: payload.following,
+              totalReposByUser: payload.totalReposByUser,
             },
           ]
         : [
@@ -29,13 +30,14 @@ const reducerFeatures = (state = initialState, action) => {
               id: payload.id,
               name: payload.name,
               login: payload.login,
-              avatar_url: payload.html_url,
+              avatar_url: payload.avatar_url,
               html_url: payload.html_url,
               location: payload.location,
               public_repos: payload.public_repos,
               public_gists: payload.public_gists,
               followers: payload.followers,
               following: payload.following,
+              totalReposByUser: payload.totalReposByUser,
             },
           ];
     default:

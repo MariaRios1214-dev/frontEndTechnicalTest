@@ -7,7 +7,7 @@ function App() {
   return (
     <div className="App">
       <nav>
-        <section>
+        <section className="align-component">
           <h1>Consulta de cuentas </h1>{' '}
         </section>
       </nav>{' '}

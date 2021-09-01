@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import Octocat from '../assets/img/Octocat.png';
-import LoginCard from '../features/loginCard/loginCard';
+import LoginCard from '../libs/loginCard/loginCard';
 import HttpServices from '../services/HttpServices';
-import FeaturesCard from '../features/featuresCard/featuresCard';
+import FeaturesCard from '../libs/featuresCard/featuresCard';
 import VSUsersFeatures from './VSUsersFeatures';
-import Button from '../features/button/button';
+import Button from '../libs/button/button';
 
 const Login = ({ handleSubmit, userContext }) => {
   const [activeComparation, setActiveComparation] = useState(false);
@@ -76,26 +76,42 @@ const mapDispatchToProps = dispatch => ({
   handleSubmit(values, key) {
     HttpServices()
       .get(`/users/${values.username}`)
-      .then(response => {
-        if (response) {
-          dispatch({
-            type: 'SIGN_IN',
-            payload: {
-              ...response,
-              key: key,
-            },
-          });
+      .then(responseLogin => {
+        const totalRepos = [];
+        if (responseLogin) {
+          HttpServices()
+            .get(`/users/${values.username}/repos`)
+            .then(responseRepos => {
+              if (responseRepos) {
+                responseRepos.map((repo, id) =>
+                  HttpServices()
+                    .get(`/repos/${values.username}/${repo.name}/languages`)
+                    .then(languagesRepos => {
+                      totalRepos.push({
+                        name: repo.name,
+                        languages: languagesRepos,
+                      });
+                    })
+                );
+                dispatch({
+                  type: 'SIGN_IN',
+                  payload: {
+                    ...responseLogin,
+                    key: key,
+                    totalReposByUser: totalRepos,
+                  },
+                });
+              } else {
+                dispatch({
+                  type: 'SIGN_IN',
+                  payload: {
+                    ...responseLogin,
+                    key: key,
+                  },
+                });
+              }
+            });
         }
-        HttpServices()
-          .get(`/users/${values.username}/repos`)
-          .then(response => {
-            if (response) {
-              dispatch({
-                type: 'GET_ALL_INFORMATION',
-                payload: response,
-              });
-            }
-          });
       });
   },
 });

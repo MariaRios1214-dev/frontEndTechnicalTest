@@ -1,4 +1,4 @@
-import Message from '../features/message/message';
+import Message from '../libs/message/message';
 
 const BASE_QUERY_URL = 'https://api.github.com';
 
