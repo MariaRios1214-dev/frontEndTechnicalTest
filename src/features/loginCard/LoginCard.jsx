@@ -1,5 +1,6 @@
 import { Formik } from 'formik';
 import React from 'react';
+import Button from '../button/button';
 import './loginCard.scss';
 
 const LoginCard = ({ handleSubmitFunction, logo }) => {
@@ -32,15 +33,13 @@ const LoginCard = ({ handleSubmitFunction, logo }) => {
                 onChange={handleChange}
               />
               <div className="button-sign">
-                <button
-                  className="component-event"
+                <Button
+                  children="Sign in"
                   type="submit"
                   name="buttonLogin"
                   disabled={!values.username}
                   onClick={handleSubmit}
-                >
-                  <strong>Sign in</strong>
-                </button>
+                />
               </div>
             </form>
           )}

@@ -1,17 +1,9 @@
 body {
   margin: 0;
-  font-family: 'Open Sans', sans-serif;
+  font-style: 'Open Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  .component-event {
-    border-radius: 4px;
-    padding: 12px 24px;
-    font-size: 20px;
-    background-color: #7cbae6;
-    color: black;
-    cursor: pointer;
-    border: 1px solid #fff;
-  }
+
   button:disabled {
     cursor: not-allowed;
     background-color: #d3d3d3;
@@ -20,14 +12,6 @@ body {
     border-radius: 4px;
     padding: 12px 24px;
     font-size: 20px;
-  }
-  .alert {
-    padding: 20px;
-    &-error {
-      background-color: #f44336;
-    }
-    color: white;
-    margin-bottom: 15px;
   }
 }
 
