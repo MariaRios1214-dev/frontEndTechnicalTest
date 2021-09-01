@@ -13,4 +13,11 @@
 }
 .infoUser {
   text-align: start;
+  article {
+    margin: 10px 0px;
+  }
+  svg,
+  span {
+    margin-right: 5px;
+  }
 }

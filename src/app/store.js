@@ -1,24 +1,46 @@
-import { createStore } from "redux";
-import HttpServices from "../services/HttpServices";
-const initialState ={
-  username: '',
-  password: ''
-}
+import { createStore } from 'redux';
 
-const getLogin =(payload)=>{
-  console.log('user', payload.username);
-  HttpServices().get(`/users/${payload.username}`)
-  .then(response => console.log('response', response))
-}
+const initialState = null;
 
-const reducerFeatures =(state=initialState, action)=>{
-  console.log('spruebaActio', action, state)
-  switch(action.type){
-    case 'LOGIN':
-      return (getLogin(action.payload))
+const reducerFeatures = (state = initialState, action) => {
+  console.log('spruebaActio', action, state);
+  const payload = action.payload;
+  switch (action.type) {
+    case 'SIGN_IN':
+      return state
+        ? [
+            state[0],
+            {
+              key: payload.key,
+              id: payload.id,
+              name: payload.name,
+              login: payload.login,
+              avatar_url: payload.html_url,
+              html_url: payload.html_url,
+              location: payload.location,
+              public_repos: payload.public_repos,
+              public_gists: payload.public_gists,
+              followers: payload.followers,
+              following: payload.following,
+            },
+          ]
+        : [
+            {
+              key: payload.key,
+              id: payload.id,
+              name: payload.name,
+              login: payload.login,
+              avatar_url: payload.html_url,
+              html_url: payload.html_url,
+              location: payload.location,
+              public_repos: payload.public_repos,
+              public_gists: payload.public_gists,
+              followers: payload.followers,
+              following: payload.following,
+            },
+          ];
     default:
-    return state
+      return state;
   }
 };
-
 export default createStore(reducerFeatures);
