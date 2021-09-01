@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import Octocat from '../assets/img/Octocat.png';
-import LoginCard from '../features/loginCard/LoginCard';
+import LoginCard from '../features/loginCard/loginCard';
 import HttpServices from '../services/HttpServices';
-import FeaturesCard from '../features/featuresCard/FeaturesCard';
+import FeaturesCard from '../features/featuresCard/featuresCard';
 import VSUsersFeatures from './VSUsersFeatures';
+import Button from '../features/button/button';
 
 const Login = ({ handleSubmit, userContext }) => {
   const [activeComparation, setActiveComparation] = useState(false);
@@ -58,12 +59,13 @@ const Login = ({ handleSubmit, userContext }) => {
         infoUserB &&
         infoUserB.length >= 1 && (
           <div className="align-component">
-            <button
-              className="component-event"
+            <Button
+              children="Compara las cuentas"
+              type="submit"
+              name="buttonVSUsersFeatures"
+              disabled={false}
               onClick={() => setActiveComparation(true)}
-            >
-              Compara las cuentas
-            </button>
+            />
           </div>
         )}
     </div>
@@ -84,6 +86,16 @@ const mapDispatchToProps = dispatch => ({
             },
           });
         }
+        HttpServices()
+          .get(`/users/${values.username}/repos`)
+          .then(response => {
+            if (response) {
+              dispatch({
+                type: 'GET_ALL_INFORMATION',
+                payload: response,
+              });
+            }
+          });
       });
   },
 });
