@@ -3,7 +3,6 @@ import { createStore } from 'redux';
 const initialState = null;
 
 const reducerFeatures = (state = initialState, action) => {
-  console.log('spruebaActio', action, state);
   const payload = action.payload;
   switch (action.type) {
     case 'SIGN_IN':

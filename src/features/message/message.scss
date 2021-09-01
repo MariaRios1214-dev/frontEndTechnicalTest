@@ -1,0 +1,29 @@
+@import '../assets/sass/theme';
+
+.message {
+  padding: 5px 0;
+  margin-bottom: 15px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+
+  p {
+    margin: 0;
+    font-family: $font-primary;
+    font-weight: 500;
+    font-size: 13px;
+  }
+  &.success {
+    color: #8ed100;
+  }
+  &.info {
+    color: #506296;
+  }
+  &.warning {
+    color: #f19a00;
+  }
+  &.danger {
+    color: #ff422a;
+  }
+}

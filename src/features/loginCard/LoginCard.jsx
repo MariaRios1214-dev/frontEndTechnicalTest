@@ -33,6 +33,7 @@ const LoginCard = ({ handleSubmitFunction, logo }) => {
               />
               <div className="button-sign">
                 <button
+                  className="component-event"
                   type="submit"
                   name="buttonLogin"
                   disabled={!values.username}

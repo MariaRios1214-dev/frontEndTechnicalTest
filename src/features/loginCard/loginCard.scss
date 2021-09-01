@@ -15,16 +15,5 @@
   .button-sign {
     display: block;
     margin: 10px 0px;
-    button {
-      border-radius: 4px;
-      padding: 12px 24px;
-      font-size: 20px;
-      background-color: #7cbae6;
-      color: rgb(93, 47, 199);
-      cursor: pointer;
-    }
-    button:disabled {
-      cursor: not-allowed;
-    }
   }
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import './featuresCard.scss';
 
 const FeaturesCard = ({ logo, totalDetail, values }) => {
+  console.log('valuesssssssssssss', values);
   return (
     <div className="featuresCard" id="propsCard">
       <section className="icon-github">
@@ -9,7 +10,11 @@ const FeaturesCard = ({ logo, totalDetail, values }) => {
       </section>
       <section>
         {/* <img src={values?.avatar_url} alt="avatar" className="avatar" /> */}
-        <img src={values?.avatar_url} alt="avatar"></img>
+        <img
+          src="https://avatars.githubusercontent.com/u/61280212?v=4"
+          className="avatar"
+          alt="avatar"
+        ></img>
         <h2>{values?.name}</h2>
         <p>{values?.login}</p>
       </section>
@@ -36,9 +41,6 @@ const FeaturesCard = ({ logo, totalDetail, values }) => {
           <article>
             <i className="fas fa-link" />
             <a href={values?.html_url}>Link</a>
-          </article>
-          <article>
-            <i className="fas fa-link" /> <span>Lenguajes</span>
           </article>
         </section>
       )}

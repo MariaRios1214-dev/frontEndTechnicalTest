@@ -1,46 +1,55 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Octocat from '../assets/img/Octocat.png';
 import FeaturesCard from '../features/featuresCard/FeaturesCard';
-const listSelector = [
-  {
-    name: 'Proyectos',
-    value: 'project',
-  },
-  {
-    name: 'Seguidores',
-    value: 'followed',
-  },
-  {
-    name: 'Seguidos',
-    value: 'follwing',
-  },
-  {
-    name: 'Commits',
-    value: 'commits',
-  },
-];
-const VSUsersFeatures = () => {
-  const handleChandeSelector = values => {
-    console.log('valuesChange', values);
+import HttpServices from '../services/HttpServices';
+
+const VSUsersFeatures = ({ userContext, getAllRepos }) => {
+  const filterValues = values => {
+    console.log('valuesChange', values.target.value);
+    const value = values.target.value;
+    const searchAnyType = value
+      .normalize('NFD')
+      .replace(/([aeio])\u0301|(u)[\u0301\u0308]/gi, '$1$2')
+      .normalize()
+      .toUpperCase();
+    console.log('searchAnyType', searchAnyType);
   };
 
   return (
     <div className="searchFeatures">
       <div className="positionsCards">
-        <FeaturesCard logo={Octocat} />
-        <FeaturesCard logo={Octocat} />
+        {userContext?.length >= 1 &&
+          userContext.map((user, key) => {
+            return <FeaturesCard key={user.key} values={user} logo={Octocat} />;
+          })}
       </div>
-      <select name="listSearch" id="listSearch">
-        {listSelector?.map(value => {
-          return (
-            <option value={value.value} onChange={handleChandeSelector}>
-              {value.name}
-            </option>
-          );
-        })}
-      </select>
+      <div className="positionsCards"></div>
+      <div className="align-component">
+        <input
+          type="text"
+          className="search-input"
+          onChange={filterValues}
+          name="textFilter"
+        />
+      </div>
     </div>
   );
 };
 
-export default VSUsersFeatures;
+const mapDispatchToProps = dispatch => ({
+  // getAllRepos(){
+  //   HttpServices()
+  //           .get(`/users/${values.username}/repos`)
+  //           .then(response => {
+  //             if (response) {
+  //               dispatch({
+  //                 type: 'GET_ALL_INFORMATION',
+  //                 payload: values,
+  //               });
+  //             }
+  //           });
+  // }
+});
+const mapStateToProps = state => ({ userContext: state });
+export default connect(mapStateToProps, mapDispatchToProps)(VSUsersFeatures);

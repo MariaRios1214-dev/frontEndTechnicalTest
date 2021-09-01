@@ -1,3 +1,5 @@
+import Message from '../features/message/message';
+
 const BASE_QUERY_URL = 'https://api.github.com';
 
 const HttpServices = () => {
@@ -5,12 +7,19 @@ const HttpServices = () => {
     get: route => {
       return fetch(BASE_QUERY_URL + route, {
         headers: { 'Content-Type': 'application/json;' },
-      }).then(response => {
-        if (response?.ok && response?.status === 200) {
-          const responseJSON = response.json();
-          return responseJSON;
-        }
-      });
+      })
+        .then(response => {
+          if (response?.ok && response?.status === 200) {
+            const responseJSON = response.json();
+            return responseJSON;
+          } else {
+            Message('danger', 'Algo ha salido mal, por favor de nuevo.');
+          }
+        })
+        .catch(error => {
+          console.log(error);
+          Message('danger', 'Algo ha salido mal, por favor de nuevo.');
+        });
     },
     command: (command, payload, route) => {
       const request = {
@@ -21,9 +30,19 @@ const HttpServices = () => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json;' },
         body: JSON.stringify(request),
-      }).then(response => {
-        console.log(response);
-      });
+      })
+        .then(response => {
+          if (response?.ok && response?.status === 200) {
+            const responseJSON = response.json();
+            return responseJSON;
+          } else {
+            Message('danger', 'Algo ha salido mal, por favor de nuevo.');
+          }
+        })
+        .catch(error => {
+          console.log(error);
+          Message('danger', 'Algo ha salido mal, por favor de nuevo.');
+        });
     },
   };
 };
