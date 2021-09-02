@@ -41,19 +41,23 @@ const VSUsersFeatures = ({ userContext }) => {
       if (duplicadosEliminados && duplicadosEliminados?.length >= 1) {
         userContext?.map(userCont =>
           duplicadosEliminados.filter(filter =>
-            filter.valueSearch === 'totalReposByUser'
-              ? listFilters.push({
-                  title: filter.titleCard,
-                  key: userCont.key,
-                  fieldFilter: userCont[filter.valueSearch],
-                  search: filter.valueSearch,
-                })
+            filter.valueSearch === 'totalReposByUser' &&
+            userCont[filter.valueSearch].length >= 1
+              ? userCont[filter.valueSearch].map(repo =>
+                  listFilters.push({
+                    title: filter.titleCard,
+                    key: userCont.key,
+                    fieldFilter: filter.valueSearch,
+                    search: repo?.name,
+                    searchLanguages: repo?.languages,
+                  })
+                )
               : listFilters.push({
                   title: filter.titleCard,
                   key: userCont.key,
-                  fieldFilter: userCont[filter.valueSearch],
-                  search: filter.valueSearch?.name,
-                  searchLanguages: filter.valueSearch?.languages,
+                  fieldFilter: filter.valueSearch,
+                  search: userCont[filter.valueSearch],
+                  searchLanguages: [],
                 })
           )
         );
@@ -64,7 +68,7 @@ const VSUsersFeatures = ({ userContext }) => {
     var valueSearch = eliminarObjetosDuplicados(listFilters, 'key');
     setValuesSearchFilter(valueSearch);
   };
-  console.log('valuesSearchFilter', valuesSearchFilter);
+
   return (
     <div className="searchFeatures">
       <div className="positionsCards">
@@ -88,15 +92,7 @@ const VSUsersFeatures = ({ userContext }) => {
             valuesSearchFilter.map(values => (
               <div id="propsCard" key={values.key}>
                 <h2>{values.tile}</h2>
-                <div>{values.fieldFilter}</div>
-                {values?.searchLanguages &&
-                values?.searchLanguages.length >= 1 ? (
-                  values.searchLanguages.map((valuesLenguages, id) => (
-                    <div>{valuesLenguages}</div>
-                  ))
-                ) : (
-                  <div>{values?.searchLanguages}</div>
-                )}
+                <li>{values.search}</li>
               </div>
             ))}
         </div>
