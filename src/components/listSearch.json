@@ -1,0 +1,67 @@
+[
+  {
+    "name": "REPOSITORIO",
+    "valueSearch": "totalReposByUser",
+    "titleCard": "REPOSITORIOS"
+  },
+  {
+    "name": "REPOSITORIOS",
+    "valueSearch": "totalReposByUser",
+    "titleCard": "REPOSITORIOS"
+  },
+  {
+    "name": "PROYECTO",
+    "valueSearch": "totalReposByUser",
+    "titleCard": "REPOSITORIOS"
+  },
+  {
+    "name": "PROJECT",
+    "valueSearch": "totalReposByUser",
+    "titleCard": "REPOSITORIOS"
+  },
+  {
+    "name": "LANGUAGES",
+    "valueSearch": "totalReposByUser",
+    "titleCard": "LENGUAJES EN REPOSITORIOS"
+  },
+  {
+    "name": "LENGUAJES",
+    "valueSearch": "totalReposByUser",
+    "titleCard": "LENGUAJES EN REPOSITORIOS"
+  },
+  {
+    "name": "SEGUIDORES",
+    "valueSearch": "followers",
+    "titleCard": "SEGUIDORES"
+  },
+  {
+    "name": "SEGUIDOS",
+    "valueSearch": "following",
+    "titleCard": "SEGUIDOS"
+  },
+  {
+    "name": "LOCALIZACIÓN",
+    "valueSearch": "location",
+    "titleCard": "LOCALIZACIÓN"
+  },
+  {
+    "name": "LOCALIZACION",
+    "valueSearch": "location",
+    "titleCard": "LOCALIZACIÓN"
+  },
+  {
+    "name": "LUGAR",
+    "valueSearch": "location",
+    "titleCard": "LOCALIZACIÓN"
+  },
+  {
+    "name": "NOMBRE",
+    "valueSearch": "name",
+    "titleCard": "NOMBRE"
+  },
+  {
+    "name": "LOGIN",
+    "valueSearch": "login",
+    "titleCard": "NOMBRE USUARIO"
+  }
+]

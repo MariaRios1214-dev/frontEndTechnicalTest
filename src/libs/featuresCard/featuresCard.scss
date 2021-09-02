@@ -1,0 +1,38 @@
+.avatar {
+  vertical-align: middle;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+.icon-github {
+  position: fixed;
+  img {
+    width: 30px;
+    height: 30px;
+  }
+}
+.infoUser {
+  text-align: start;
+  article {
+    margin: 10px 0px;
+  }
+  svg,
+  span {
+    margin-right: 5px;
+  }
+}
+#fa-star {
+  color: #ffc445;
+}
+#fa-user-friends {
+  color: #ff5e2a;
+}
+#fa-users {
+  color: #4dba87;
+}
+#fa-hand-spock {
+  color: #f4cab1;
+}
+#fa-link {
+  color: #506296;
+}

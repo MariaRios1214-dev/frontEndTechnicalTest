@@ -1,22 +1,22 @@
 import React from 'react';
 
-import './App.css';
 import Login from './components/Login';
-import {Switch,Route} from 'react-router-dom';
-
+import { Switch, Route } from 'react-router-dom';
 
 function App() {
   return (
-      <div className="App" >
-        <nav>
-          <section ><h1>Consulta de cuentas </h1> </section>
-        </nav> <main>
-          <Switch >
-            <Route path='/'><Login /> </Route>
-            <Route path='/detailAccount' render={() => { }} > </Route>
-          </Switch>
-        </main>
-      </div>
+    <div className="App">
+      <nav>
+        <section className="align-component">
+          <h1>Consulta de cuentas </h1>{' '}
+        </section>
+      </nav>{' '}
+      <main>
+        <Switch>
+          <Route path="/" component={Login} />
+        </Switch>
+      </main>
+    </div>
   );
 }
 
